@@ -1,6 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import 'Utilities/buttons.dart';
+import 'connection/register.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -48,63 +51,33 @@ class _MyHomePageState extends State<MyHomePage> {
             const Spacer(),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.green,
-                  minimumSize: const Size.fromHeight(50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),
+              child: CustomButton("Register Now", () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const RegisterPage(),
                   ),
-                ),
-                onPressed: () {
-                  if (kDebugMode) {
-                    print("Button 1 Pressed!");
-                  }
-                },
-                child: const Text("Register Now"),
-              ),
+                );
+              }),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  minimumSize: const Size.fromHeight(50),
-                  side: const BorderSide(color: Colors.green),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                ),
-                onPressed: () {
+              child: InvertedButton("Login", () {
                   if (kDebugMode) {
                     print("Button 1 Pressed!");
                   }
-                },
-                child: const Text(
-                  "Login",
-                  style: TextStyle(color: Colors.green),
-                ),
+                }
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ElevatedButton(
-                onPressed: () { },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.transparent,
-                  minimumSize: const Size.fromHeight(50),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                ),
-                child: const Text(
-                  "Try without login",
-                  style: TextStyle(color: Colors.white),
-                ),
+            TextButton(
+              onPressed: () {},
+              child: const Text(
+                "Try without login",
+                style: TextStyle(color: Colors.white, fontSize: 10),
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
           ],
         ),
