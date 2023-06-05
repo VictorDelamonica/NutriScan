@@ -23,34 +23,14 @@ class _RegisterPageState extends State<RegisterPage> {
         children: [
           const Padding(
             padding: EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green),
-                    borderRadius: BorderRadius.all(Radius.circular(25))),
-                labelText: 'Username',
-                labelStyle: TextStyle(
-                  color: Colors.green,
-                ),
-              ),
-            ),
+            child: CustomTextFiled("Username", "test"),
           ),
           const Padding(
             padding: EdgeInsets.all(8.0),
-            child: TextField(
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.green),
-                    borderRadius: BorderRadius.all(Radius.circular(25))),
-                labelText: 'Password',
-                labelStyle: TextStyle(
-                  color: Colors.green,
-                ),
-              ),
-            ),
+            child: CustomTextFiled("Email", "test"),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
             child: CustomTextFiled("Confirm Password", "test"),
           ),
           ElevatedButton(

@@ -1,10 +1,13 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'Utilities/buttons.dart';
+import 'camera/camera.dart';
 import 'connection/register.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -38,48 +41,59 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 3, 130, 51),
       body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            const Padding(
-              padding: EdgeInsets.only(top: 28.0),
-              child: Image(
-                image: AssetImage("./assets/images/logo.png"),
-              ),
-            ),
-            const Spacer(),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CustomButton("Register Now", () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const RegisterPage(),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              const Align(
+                alignment: Alignment.topCenter,
+                child: Padding(
+                  padding: EdgeInsets.only(top: 28.0),
+                  child: Image(
+                    image: AssetImage("./assets/images/logo.png"),
                   ),
-                );
-              }),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-              child: InvertedButton("Login", () {
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height / 3 - 28.0 - kToolbarHeight - 8.0 * 4 - 10.0,),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CustomButton("Register Now", () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const RegisterPage(),
+                    ),
+                  );
+                }),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                child: InvertedButton("Login", () {
                   if (kDebugMode) {
                     print("Button 1 Pressed!");
                   }
-                }
+                }),
               ),
-            ),
-            TextButton(
-              onPressed: () {},
-              child: const Text(
-                "Try without login",
-                style: TextStyle(color: Colors.white, fontSize: 10),
+              TextButton(
+                onPressed: () async {
+                  await availableCameras().then((cameras) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => CameraPage(
+                          cameras: cameras,
+                        ),
+                      ),
+                    );
+                  });
+                },
+                child: const Text(
+                  "Try without login",
+                  style: TextStyle(color: Colors.white, fontSize: 10),
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

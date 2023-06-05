@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
 
 class CustomTextFiled extends StatelessWidget {
-  var hint = "test";
-  var inputText;
+  final String hint;
+  final String inputText;
 
-  CustomTextFiled(this.hint, this.inputText, {Key? key}) : super(key: key);
+  const CustomTextFiled(this.hint, this.inputText, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const  TextField(
+    return TextField(
       decoration: InputDecoration(
         filled: true,
         fillColor: Colors.white,
-        border: OutlineInputBorder(borderSide: BorderSide(color: Colors.green), borderRadius: BorderRadius.all(Radius.circular(25))),
-        labelText: "hint",
-        labelStyle: TextStyle(
-          color: Colors.green,
+        border: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(25)),
         ),
-      ),);
+        labelText: hint,
+        labelStyle: const TextStyle(
+          color: Colors.blue,
+        ),
+      ),
+    );
   }
 }
