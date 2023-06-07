@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "441390678942",
+    "project_id": "nutriscan-fbdf8",
+    "storage_bucket": "nutriscan-fbdf8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:441390678942:android:6a2dd5cf90e47b37438c8f",
+        "android_client_info": {
+          "package_name": "com.monik.nutriscan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "441390678942-bf46stj6i77g8ouqld3lacjbag36uc4m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9_bgJ5mrMrMKSyutbmTtVUg09utFj1JI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "441390678942-bf46stj6i77g8ouqld3lacjbag36uc4m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

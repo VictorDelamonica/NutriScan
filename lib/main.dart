@@ -1,13 +1,20 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:nutriscan/connection/loggin.dart';
 
 import 'Utilities/buttons.dart';
 import 'camera/camera.dart';
 import 'connection/register.dart';
 
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -69,9 +76,12 @@ class _MyHomePageState extends State<MyHomePage> {
               Padding(
                 padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                 child: InvertedButton("Login", () {
-                  if (kDebugMode) {
-                    print("Button 1 Pressed!");
-                  }
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginPage(),
+                    ),
+                  );
                 }),
               ),
               TextButton(

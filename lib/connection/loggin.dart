@@ -1,51 +1,45 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:nutriscan/Home/home.dart';
 import 'package:nutriscan/Utilities/textFileds.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../Utilities/appBar.dart';
 import '../camera/camera.dart';
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<RegisterPage> createState() => _RegisterPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  final TextEditingController _usernameController = TextEditingController();
+class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  Future<void> _registerUser() async {
+  Future<void> _loginUser() async {
     try {
-      final String user = _usernameController.text.trim();
       final String email = _emailController.text.trim();
       final String password = _passwordController.text.trim();
 
-      UserCredential userCredential = await _auth
-          .createUserWithEmailAndPassword(
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
         email: email,
         password: password,
       );
+
       if (userCredential.user != null) {
-        await userCredential.user!.updateDisplayName(user);
-      }
-
-      availableCameras().then((cameras) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => CameraPage(
-              cameras: cameras,
+        availableCameras().then((cameras) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const HomePage(),
             ),
-          ),
-        );
-      });
-
+          );
+        });
+      }
     } catch (e) {
       if (kDebugMode) {
         print("Error: $e");
@@ -67,10 +61,6 @@ class _RegisterPageState extends State<RegisterPage> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: CustomTextFiled("Username", "test", _usernameController),
-              ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
                 child: CustomTextFiled("Email", "test", _emailController),
               ),
               Padding(
@@ -78,8 +68,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 child: CustomTextFiled("Confirm Password", "test", _passwordController),
               ),
               ElevatedButton(
-                onPressed: _registerUser,
-                child: const Text('Register'),
+                onPressed: _loginUser,
+                child: const Text('Login'),
               ),
             ],
           )),

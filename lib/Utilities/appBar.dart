@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   var title = "Lorem Ipsum";
 
+  final Function onPressed;
+
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
-  CustomAppBar(this.title, {Key? key}) : super(key: key);
+  CustomAppBar(this.title, this.onPressed, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +17,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         backgroundColor: const Color.fromARGB(255, 3, 130, 51),
         elevation: 0,
         leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: () => onPressed,
           icon: const Icon(Icons.arrow_back),
         ),
         centerTitle: true,
