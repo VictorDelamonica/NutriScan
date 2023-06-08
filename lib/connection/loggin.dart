@@ -51,9 +51,9 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 3, 130, 51),
-      appBar: CustomAppBar("Register", () {
+      appBar: CustomAppBar("Register", onPressed: () {
         Navigator.pop(context);
-      }),
+      },),
       body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

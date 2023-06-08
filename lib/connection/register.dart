@@ -53,7 +53,7 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 3, 130, 51),
-      appBar: CustomAppBar("Register", () {
+      appBar: CustomAppBar("Register", onPressed: () {
         Navigator.pop(context);
       }),
       body: Center(

@@ -5,6 +5,7 @@ import 'package:nutriscan/Utilities/buttons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:nutriscan/Utilities/card.dart';
 
+import '../About/about.dart';
 import '../Utilities/appBar.dart';
 import '../camera/camera.dart';
 
@@ -21,7 +22,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar("Home", () {
+      appBar: CustomAppBar("Home", icon: Icons.logout, onPressed: () {
         FirebaseAuth.instance.signOut();
         SystemNavigator.pop();
       }),
@@ -82,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const HomePage(),
+                                builder: (context) => const AboutPage(),
                               ),
                             );
                           }),

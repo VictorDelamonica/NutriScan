@@ -2,13 +2,17 @@ import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   var title = "Lorem Ipsum";
+  var _icon = Icons.arrow_back;
 
   final VoidCallback _onPressed;
 
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 
-  CustomAppBar(this.title, this._onPressed, {Key? key}) : super(key: key);
+  CustomAppBar(this.title, {IconData? icon, required VoidCallback onPressed, Key? key})
+      : _icon = icon ?? Icons.arrow_back,
+        _onPressed = onPressed,
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +22,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         elevation: 0,
         leading: IconButton(
           onPressed: _onPressed,
-          icon: const Icon(Icons.arrow_back),
+          icon: Icon(_icon),
         ),
         centerTitle: true,
         title: Text(

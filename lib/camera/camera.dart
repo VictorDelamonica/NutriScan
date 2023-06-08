@@ -124,7 +124,7 @@ class PreviewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar("Preview", () {
+      appBar: CustomAppBar("Preview", onPressed: () {
         Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
       }),
       body: Center(
