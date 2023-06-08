@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nutriscan/Utilities/buttons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:nutriscan/Utilities/card.dart';
 
 import '../Utilities/appBar.dart';
 import '../camera/camera.dart';
@@ -20,46 +21,81 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar("Home", () {SystemNavigator.pop();}),
+      appBar: CustomAppBar("Home", () {
+        FirebaseAuth.instance.signOut();
+        SystemNavigator.pop();
+      }),
       body: Center(
-        child: Stack(
-            children: [
-              Center(
-                child: Column(
-                  children: [
-                    const SizedBox(height: kToolbarHeight),
-                    const Text("Home Page"),
-                    Text("Welcome ${userCredential.displayName}"),
-                  ],
-                ),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(
+                "Welcome ${userCredential.displayName}!",
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: FractionallySizedBox(
-                  widthFactor: 1.0,
-                  child: Container(
-                    padding: const EdgeInsets.all(16.0),
-                    child: CustomButton(
-                      "Scan Now",
-                      () {
-                        availableCameras().then((cameras) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => CameraPage(
-                                cameras: cameras,
+            ),
+            Expanded(
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: GridView(
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 10,
+                          childAspectRatio: 1.0,
+                        ),
+                        children: [
+                          CustomCard("Scan Now", Icons.camera_alt, () {
+                            availableCameras().then((cameras) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => CameraPage(
+                                    cameras: cameras,
+                                  ),
+                                ),
+                              );
+                            });
+                          }),
+                          CustomCard("Profile", Icons.person_outline,() {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const HomePage(),
                               ),
-                            ),
-                          );
-                        });
-                      },
+                            );
+                          }),
+                          CustomCard("Settings", Icons.settings,() {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const HomePage(),
+                              ),
+                            );
+                          }),
+                          CustomCard("About", Icons.question_mark,() {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const HomePage(),
+                              ),
+                            );
+                          }),
+                        ],
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      );
+      ),
+    );
   }
 }

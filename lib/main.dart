@@ -2,7 +2,9 @@ import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:nutriscan/connection/loggin.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
+import 'Home/home.dart';
 import 'Utilities/buttons.dart';
 import 'camera/camera.dart';
 import 'connection/register.dart';
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: FirebaseAuth.instance.currentUser != null ? const HomePage() : const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }

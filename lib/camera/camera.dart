@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:nutriscan/Home/home.dart';
+import 'package:nutriscan/Utilities/appBar.dart';
 
 class CameraPage extends StatefulWidget {
   const CameraPage({Key? key, required this.cameras}) : super(key: key);
@@ -122,7 +124,9 @@ class PreviewPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Preview Page')),
+      appBar: CustomAppBar("Preview", () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+      }),
       body: Center(
         child: Column(mainAxisSize: MainAxisSize.min, children: [
           Image.file(File(picture.path), fit: BoxFit.cover, width: 250),
