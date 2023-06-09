@@ -1,10 +1,10 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:nutriscan/Home/home.dart';
 import 'package:nutriscan/Utilities/textFileds.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../Pages/Home/home.dart';
 import '../Utilities/appBar.dart';
 import '../camera/camera.dart';
 

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:nutriscan/connection/loggin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'Home/home.dart';
+import 'Pages/Home/home.dart';
 import 'Utilities/buttons.dart';
 import 'camera/camera.dart';
 import 'connection/register.dart';

@@ -5,8 +5,8 @@ import 'package:nutriscan/Utilities/buttons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:nutriscan/Utilities/card.dart';
 
-import '../Utilities/appBar.dart';
-import '../camera/camera.dart';
+import '../../Utilities/appBar.dart';
+import '../../camera/camera.dart';
 
 class AboutPage extends StatefulWidget {
   const AboutPage({super.key});

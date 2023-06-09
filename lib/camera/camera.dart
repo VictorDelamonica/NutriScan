@@ -3,8 +3,9 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nutriscan/Home/home.dart';
 import 'package:nutriscan/Utilities/appBar.dart';
+
+import '../Pages/Home/home.dart';
 
 class CameraPage extends StatefulWidget {
   const CameraPage({Key? key, required this.cameras}) : super(key: key);

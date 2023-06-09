@@ -1,13 +1,14 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:nutriscan/Pages/Profile/profile.dart';
 import 'package:nutriscan/Utilities/buttons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:nutriscan/Utilities/card.dart';
 
 import '../About/about.dart';
-import '../Utilities/appBar.dart';
-import '../camera/camera.dart';
+import '../../Utilities/appBar.dart';
+import '../../camera/camera.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -67,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => const HomePage(),
+                                builder: (context) => const ProfilePage(),
                               ),
                             );
                           }),
