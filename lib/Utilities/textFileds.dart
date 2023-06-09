@@ -84,7 +84,7 @@ class _CustomToggleRoundedButtonState extends State<CustomToggleRoundedButton> {
       ),
     ),onPressed: () {
       setState(() {
-      _color = _color == Colors.white ? Colors.gr : Colors.white;
+      _color = _color == Colors.white ? Colors.green : Colors.white;
       });
     }, child: Text(widget._text, style: const TextStyle(color: Colors.black),));;
   }
