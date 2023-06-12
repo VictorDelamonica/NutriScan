@@ -89,26 +89,3 @@ class _CustomToggleRoundedButtonState extends State<CustomToggleRoundedButton> {
     }, child: Text(widget._text, style: const TextStyle(color: Colors.black),));;
   }
 }
-//
-//
-// class CustomToggleRoundedButton extends StatelessWidget {
-//   final String _text;
-//   var _color = Colors.white;
-//
-//   CustomToggleRoundedButton(this._text, {super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return ElevatedButton(style: ButtonStyle(
-//       backgroundColor: MaterialStateProperty.all(_color),
-//       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-//         RoundedRectangleBorder(
-//           borderRadius: BorderRadius.circular(25),
-//           side: const BorderSide(color: Colors.black),
-//         ),
-//       ),
-//     ),onPressed: () {
-//       _color = _color == Colors.white ? Colors.green : Colors.white;
-//     }, child: Text(_text, style: const TextStyle(color: Colors.black),));
-//   }
-// }
