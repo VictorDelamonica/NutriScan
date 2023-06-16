@@ -1,4 +1,5 @@
 import 'package:camera/camera.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:nutriscan/Utilities/textFileds.dart';
@@ -32,9 +33,16 @@ class _RegisterPageState extends State<RegisterPage> {
         email: email,
         password: password,
       );
-      if (userCredential.user != null) {
-        await userCredential.user!.updateDisplayName(user);
-      }
+
+      FirebaseDatabase database = FirebaseDatabase.instanceFor(databaseURL: 'https://nutriscan-fbdf8-default-rtdb.europe-west1.firebasedatabase.app', app: FirebaseDatabase.instance.app);
+      DatabaseReference userRef = database.ref().child("users").child(FirebaseAuth.instance.currentUser!.uid);
+
+      userRef.push().set({
+        'username': user,
+        'email': email,
+      }).catchError((error) {
+        print('Error : $error');
+      });
 
       Navigator.push(
         context,

@@ -1,4 +1,5 @@
 import 'package:camera/camera.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:nutriscan/Pages/Profile/profile.dart';
@@ -19,6 +20,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final User userCredential = FirebaseAuth.instance.currentUser!;
+  final DatabaseReference _reference = FirebaseDatabase.instance.ref();
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +32,7 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                "Welcome ${userCredential.displayName}!",
-                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-            ),
+            Text(FirebaseAuth.instance.currentUser!.uid),
             Expanded(
               child: Stack(
                 children: [
