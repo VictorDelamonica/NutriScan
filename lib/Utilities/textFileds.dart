@@ -96,58 +96,71 @@ class _CustomToggleRoundedButtonState extends State<CustomToggleRoundedButton> {
       DataSnapshot snapshot = event.snapshot;
       dynamic values = snapshot.value;
       if (values is Map<dynamic, dynamic>) {
-        String key = values.keys.first;
-        allergyRef.child(key).child('text').once().then((event) {
-          DataSnapshot allergySnapshot = event.snapshot;
-          dynamic value = allergySnapshot.value;
+        bool isPresent = false; // Variable pour vérifier la présence de la valeur dans les données
 
-          setState(() {
-            if (value == widget._text) {
-              _color = Colors.green;
-            } else {
-              _color = Colors.white;
-            }
-          });
+        values.forEach((key, value) {
+          if (value['text'] == widget._text) {
+            isPresent = true;
+          }
+        });
+
+        setState(() {
+          if (isPresent) {
+            _color = Colors.green;
+          } else {
+            _color = Colors.white;
+          }
         });
       }
     });
   }
+
 
   void _addToDatabase(String text) {
     FirebaseDatabase database = FirebaseDatabase.instanceFor(
         databaseURL:
             'https://nutriscan-fbdf8-default-rtdb.europe-west1.firebasedatabase.app',
         app: FirebaseDatabase.instance.app);
-    DatabaseReference _database = database
+    DatabaseReference database0 = database
         .ref()
         .child('users')
         .child(FirebaseAuth.instance.currentUser!.uid)
         .child('allergy');
-    _database.push().set({'text': text});
+    database0.push().set({'text': text});
   }
 
-  void _removeFromDatabase() {
+  void _removeFromDatabase(String text) {
     FirebaseDatabase database = FirebaseDatabase.instanceFor(
-        databaseURL:
-            'https://nutriscan-fbdf8-default-rtdb.europe-west1.firebasedatabase.app',
-        app: FirebaseDatabase.instance.app);
-    DatabaseReference _database = database
+      databaseURL: 'https://nutriscan-fbdf8-default-rtdb.europe-west1.firebasedatabase.app',
+      app: FirebaseDatabase.instance.app,
+    );
+    DatabaseReference databaseRef = database
         .ref()
         .child('users')
-        .child(FirebaseAuth.instance.currentUser!.uid).child('allergy');
-    _database.child('/').orderByKey().limitToLast(1).once().then((event) {
+        .child(FirebaseAuth.instance.currentUser!.uid)
+        .child('allergy');
+
+    databaseRef.orderByChild('text').equalTo(text).once().then((event) {
       DataSnapshot snapshot = event.snapshot;
       dynamic values = snapshot.value;
       if (values is Map<dynamic, dynamic>) {
-        String key = values.keys.first;
-        _database.child('/$key').remove();
+        String key = '';
+
+        values.forEach((k, v) {
+          if (v['text'] == text) {
+            key = k;
+          }
+        });
+
+        if (key.isNotEmpty) {
+          databaseRef.child(key).remove();
+        }
       }
-      return null; // Return a value from the then() callback
     }).catchError((error) {
       print('Une erreur s\'est produite lors de la suppression : $error');
-      return null; // Return a value from the catchError() callback
-    }, test: (error) => error is FirebaseException);
+    });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -164,7 +177,7 @@ class _CustomToggleRoundedButtonState extends State<CustomToggleRoundedButton> {
         onPressed: () {
           setState(() {
             if (_color == Colors.green) {
-              _removeFromDatabase();
+              _removeFromDatabase(widget._text);
             } else {
               _addToDatabase(widget._text);
             }
