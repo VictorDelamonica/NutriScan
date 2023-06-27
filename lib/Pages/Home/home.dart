@@ -32,7 +32,6 @@ class _HomePageState extends State<HomePage> {
       body: Center(
         child: Column(
           children: [
-            Text(FirebaseAuth.instance.currentUser!.uid),
             Expanded(
               child: Stack(
                 children: [
