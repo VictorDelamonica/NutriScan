@@ -1,12 +1,12 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:nutriscan/Utilities/textFileds.dart';
+import 'package:nutriscan/Utilities/textFiled.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../Pages/Home/home.dart';
 import '../Utilities/appBar.dart';
-import '../camera/camera.dart';
+
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});

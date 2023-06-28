@@ -1,6 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:nutriscan/connection/loggin.dart';
+import 'package:nutriscan/connection/login.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'Pages/Home/home.dart';

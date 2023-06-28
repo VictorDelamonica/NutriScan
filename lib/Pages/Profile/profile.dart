@@ -1,14 +1,9 @@
-import 'dart:async';
 
-import 'package:camera/camera.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:nutriscan/Utilities/buttons.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:nutriscan/Utilities/card.dart';
-import 'package:nutriscan/Utilities/textFileds.dart';
+import 'package:nutriscan/Utilities/textFiled.dart';
 
 import '../../Utilities/appBar.dart';
 
@@ -22,21 +17,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   final User userCredential = FirebaseAuth.instance.currentUser!;
 
-  Future<void> _addAllergy(String allergy) async {
-    try {
-      FirebaseDatabase database = FirebaseDatabase.instanceFor(databaseURL: 'https://nutriscan-fbdf8-default-rtdb.europe-west1.firebasedatabase.app', app: FirebaseDatabase.instance.app);
-      DatabaseReference userRef = database.ref().child("users").child(FirebaseAuth.instance.currentUser!.uid);
-      userRef.set({'allergy': allergy});
-    } catch (e) {
-      if (kDebugMode) {
-        print("Error: $e");
-      }
-    }
-  }
 
-  final TextEditingController _usernameController = TextEditingController();
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

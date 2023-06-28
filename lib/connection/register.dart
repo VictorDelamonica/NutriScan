@@ -1,13 +1,11 @@
-import 'package:camera/camera.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:nutriscan/Utilities/textFileds.dart';
+import 'package:nutriscan/Utilities/textFiled.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../Pages/Home/home.dart';
 import '../Utilities/appBar.dart';
-import '../camera/camera.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({Key? key}) : super(key: key);
@@ -28,14 +26,19 @@ class _RegisterPageState extends State<RegisterPage> {
       final String email = _emailController.text.trim();
       final String password = _passwordController.text.trim();
 
-      UserCredential userCredential =
-          await _auth.createUserWithEmailAndPassword(
+      await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
 
-      FirebaseDatabase database = FirebaseDatabase.instanceFor(databaseURL: 'https://nutriscan-fbdf8-default-rtdb.europe-west1.firebasedatabase.app', app: FirebaseDatabase.instance.app);
-      DatabaseReference userRef = database.ref().child("users").child(FirebaseAuth.instance.currentUser!.uid);
+      FirebaseDatabase database = FirebaseDatabase.instanceFor(
+          databaseURL:
+              'https://nutriscan-fbdf8-default-rtdb.europe-west1.firebasedatabase.app',
+          app: FirebaseDatabase.instance.app);
+      DatabaseReference userRef = database
+          .ref()
+          .child("users")
+          .child(FirebaseAuth.instance.currentUser!.uid);
 
       userRef.push().set({
         'username': user,

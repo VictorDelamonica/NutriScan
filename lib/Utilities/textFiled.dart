@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -96,7 +95,7 @@ class _CustomToggleRoundedButtonState extends State<CustomToggleRoundedButton> {
       DataSnapshot snapshot = event.snapshot;
       dynamic values = snapshot.value;
       if (values is Map<dynamic, dynamic>) {
-        bool isPresent = false; // Variable pour vérifier la présence de la valeur dans les données
+        bool isPresent = false;
 
         values.forEach((key, value) {
           if (value['text'] == widget._text) {
@@ -157,7 +156,7 @@ class _CustomToggleRoundedButtonState extends State<CustomToggleRoundedButton> {
         }
       }
     }).catchError((error) {
-      print('Une erreur s\'est produite lors de la suppression : $error');
+      print("Error: $error");
     });
   }
 
@@ -188,6 +187,5 @@ class _CustomToggleRoundedButtonState extends State<CustomToggleRoundedButton> {
           widget._text,
           style: const TextStyle(color: Colors.black),
         ));
-    ;
   }
 }
