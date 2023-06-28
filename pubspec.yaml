@@ -38,6 +38,7 @@ dependencies:
   camera: ^0.10.5
   flutter_launcher_icons: ^0.13.1
   firebase_database: ^10.2.2
+  url_launcher: ^6.0.0
 
 flutter_launcher_icons:
   android: "launcher_icon"

@@ -1,12 +1,8 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:nutriscan/Utilities/buttons.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:nutriscan/Utilities/card.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../Utilities/appBar.dart';
-import '../../camera/camera.dart';
 
 class AboutPage extends StatefulWidget {
   const AboutPage({super.key});
@@ -24,24 +20,48 @@ class _AboutPageState extends State<AboutPage> {
       }),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          mainAxisSize: MainAxisSize.max,
           children: [
-            const Text('Developed by: Victor Delamonica'),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.max,
-              children: [
-                Image(
-                    image: Image.asset("assets/images/github.png").image,
-                    width: 20,
-                    height: 20),
-                const Text(" => https://github.com/VictorDelamonica")
-              ],
+            Expanded(
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: GridView(
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 10,
+                          crossAxisSpacing: 10,
+                          childAspectRatio: 1.0,
+                        ),
+                        children: [
+                          CustomCard("GitHub", Icons.code, () {
+                            const url = "https://github.com/VictorDelamonica";
+                            launchUrlString(url);
+                          }),
+                          CustomCard("LinkedIn", Icons.work, () {
+                            const url = "https://www.linkedin.com/in/victor-delamonica/";
+                            launchUrlString(url);
+                          }),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),
       ),
     );
+  }
+}
+
+void launchURL(String url) async {
+  if (await canLaunchUrlString(url)) {
+    await launchUrlString(url);
+  } else {
+    throw 'Impossible de lancer $url';
   }
 }

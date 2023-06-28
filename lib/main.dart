@@ -22,10 +22,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      title: 'NutriScan',
       home: FirebaseAuth.instance.currentUser != null ? const HomePage() : const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
