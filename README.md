@@ -2,6 +2,8 @@
 
 NutriScan is a mobile app that uses machine learning algorithms to scan and analyze restaurant menus to identify healthy options for people with dietary restrictions.
 
+TEST
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
